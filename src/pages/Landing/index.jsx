@@ -10,13 +10,27 @@ import LandingTabs from "../../components/ui/LandingTabs";
 import DiscoverTabs from "../../components/ui/DiscoverTabs";
 import ProfileTabs from "../../components/ui/ProfileTabs";
 import AddBook from "../../components/ui/AddBook";
+import SearchTabs from "../../components/ui/SearchTabs";
+import Button from "../../components/base/Button";
+import Input from "../../components/base/Input";
+
+
 
 
 const Landing = () => {
   const navigation = useNavigate();
   const [selectedTab, setSelectedTab] = useState(null);
   const [selectedDiscoverTab, setSelectedDiscoverTab] = useState("Books");
-  const [selectedProfileTab, setSelectedProfileTab] = useState("Books");;
+  const [selectedProfileTab, setSelectedProfileTab] = useState("My Books");
+  const [selectedSearchTab, setSelectedSearchTab] = useState("Title");;
+  const [selectedSearchRoute, setSelectedSearchRoute] = useState("Title");;
+  const [searchEntry, setSearch] = useState("Title");
+  const [searchResult, setSearchResult] = useState(null);
+  const [failedResult, setFailedResult] = useState("");
+
+
+
+
   const [allBooks, setAllBooks] = useState([]);
   const [followSuggestions, setFollowSuggestions] = useState([]);
   const [MyBooks, setMyBooks] = useState([]);
@@ -102,6 +116,35 @@ const Landing = () => {
     fetchFollowings();
   }, []);
 
+  useEffect(() => {
+    if (selectedSearchTab === "Title") {
+      setSelectedSearchRoute("books/title/");
+    } else if (selectedSearchTab === "Author") {
+      setSelectedSearchRoute("books/author/");
+    } else if (selectedSearchTab === "Genre") {
+      setSelectedSearchRoute("books/genre/");
+    }
+  }, [selectedSearchTab]);
+
+  const searchHandler = async () => {
+
+    try {
+      const response = await sendRequest({
+        method: requestMethods.GET,
+        route: selectedSearchRoute + searchEntry,
+      });
+
+      if (response.message == "No matches.") {
+        setSearchResult([]);
+      } else {
+        setSearchResult(response);
+      }
+
+
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   return (
     <div className="flex column page">
@@ -146,6 +189,36 @@ const Landing = () => {
             <div className="flex wrap">
               <AddBook/>
             </div>
+          )}
+        </div>
+      )}
+      {selectedTab === "Search" && (
+        <div>
+          <Input
+            label={"Seach"}
+            placeholder={"Search for something here..."}
+            onChange={(Search) => setSearch(Search)}
+          />
+          <Button
+            color={"primary-bg"}
+            textColor={"white-text"}
+            text={"Search"}
+            onClick={() => searchHandler()}
+          />
+          <SearchTabs onTabChanged={(value) => setSelectedSearchTab(value)} />
+          {searchResult !== null && (
+            searchResult.length > 0 ? (
+              <div className="flex wrap">
+                {searchResult.map((book) => (
+                  <BookCard key={book._id} book={book} />
+                ))}
+              </div>
+            ) : (
+            searchResult.length === 0 && (
+              <div className="flex wrap">
+                no matches
+              </div>
+            ))
           )}
         </div>
       )}
