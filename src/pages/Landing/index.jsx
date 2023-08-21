@@ -8,16 +8,23 @@ import { sendRequest } from "../../core/config/request";
 import { requestMethods } from "../../core/enums/requestMethods";
 import LandingTabs from "../../components/ui/LandingTabs";
 import DiscoverTabs from "../../components/ui/DiscoverTabs";
+import ProfileTabs from "../../components/ui/ProfileTabs";
+import AddBook from "../../components/ui/AddBook";
+
 
 const Landing = () => {
   const navigation = useNavigate();
   const [selectedTab, setSelectedTab] = useState(null);
-  const [selectedDiscoverTab, setSelectedDiscoverTab] = useState("Books");;
+  const [selectedDiscoverTab, setSelectedDiscoverTab] = useState("Books");
+  const [selectedProfileTab, setSelectedProfileTab] = useState("Books");;
   const [allBooks, setAllBooks] = useState([]);
   const [followSuggestions, setFollowSuggestions] = useState([]);
+  const [MyBooks, setMyBooks] = useState([]);
+  const [followings, setFollowings] = useState([]);
 
 
-  const fetchBooks = async () => {
+
+  const fetchAllBooks = async () => {
     try {
       const response = await sendRequest({
         route: "/books",
@@ -50,10 +57,49 @@ const Landing = () => {
       }
     }
   };
+
+  const fetchMyBooks = async () => {
+    try {
+      const response = await sendRequest({
+        route: "/books/my",
+        method: requestMethods.GET,
+      });
+
+      setMyBooks(response);
+      console.log(MyBooks)
+    } catch (error) {
+      console.log(error.response.status);
+    if (error.response.status === 401) {
+      console.log('m3lesh');
+      }
+    }
+  };
+
+  const fetchFollowings = async () => {
+    try {
+      const response = await sendRequest({
+        route: "/user/following",
+        method: requestMethods.GET,
+      });
+
+      setFollowings(response);
+      console.log('suggestions',followings)
+    } catch (error) {
+      console.log(error.response.status);
+    if (error.response.status === 401) {
+      console.log('m3lesh');
+      }
+    }
+  };
   
   useEffect(() => {
-    fetchBooks();
+    fetchAllBooks();
     fetchFollowSuggestions();
+  }, []);
+
+  useEffect(() => {
+    fetchMyBooks();
+    fetchFollowings();
   }, []);
 
 
@@ -75,6 +121,30 @@ const Landing = () => {
               {followSuggestions.map((user) => {
                 return <UserCard user={user} />;
               })}
+            </div>
+          )}
+        </div>
+      )}
+      {selectedTab === "Profile" && (
+        <div>
+          <ProfileTabs onTabChanged={(value) => setSelectedProfileTab(value)} />
+          {selectedProfileTab === "My Books" && (
+            <div className="flex wrap">
+              {MyBooks.map((book) => {
+                return <BookCard book={book} />;
+              })}
+            </div>
+          )}
+          {selectedProfileTab === "Following" && (
+            <div className="flex wrap">
+              {followings.map((user) => {
+                return <UserCard user={user} />;
+              })}
+            </div>
+          )}
+          {selectedProfileTab === "Add Book" && (
+            <div className="flex wrap">
+              <AddBook/>
             </div>
           )}
         </div>
