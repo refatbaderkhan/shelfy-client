@@ -14,7 +14,6 @@ const LandingTabs = ({ onTabChanged }) => {
 
   const selectHandler = (value) => {
     setSelectedTab(value);
-
     onTabChanged(value);
   };
 
