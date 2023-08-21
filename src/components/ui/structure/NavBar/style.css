@@ -1,0 +1,18 @@
+.navBar {
+  height: 80px;
+  align-items: center;
+  padding: 5px 25px;
+  border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.menuIcon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.226);
+}
+
+.userIcon {
+  width: 50px;
+  height: 50px;
+  margin: 0 15px;
+}
