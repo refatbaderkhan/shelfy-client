@@ -19,29 +19,33 @@ const SearchTabs
   };
 
   return (
-    <div className="flex row fullWidth landingTabs">
+    <div className="flex row center fullWidth searchTabs">
       <TabButton
         name={"Title"}
         selected={selectedTab === "Title"}
         value={"Title"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Author"}
         selected={selectedTab === "Author"}
         value={"Author"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
         <TabButton
         name={"Genre"}
         selected={selectedTab === "Genre"}
         value={"Genre"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Keyword"}
         selected={selectedTab === "Keyword"}
         value={"Keyword"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
     </div>

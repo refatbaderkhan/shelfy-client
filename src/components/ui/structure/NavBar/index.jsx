@@ -3,46 +3,31 @@ import "./style.css";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../../base/Button";
+import logo from "../../../../assets/logo.png"
 
 const NavBar = () => {
-  const [username, setUsername] = useState("Taha");
   const location = useLocation();
   const navigation = useNavigate();
-  const [show, setShow] = useState(true);
 
-  useEffect(() => {
-    console.log(location);
-    if (location.pathname === "/") {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-  }, [location.pathname]);
 
   return (
-    show && (
       <div className="flex fullwidth spaceBetween navBar">
-        <div className="flex circular center menuIcon">
-          <AiOutlineMenu />
+        <div className="flex center menuIcon">
+        <img src={logo} alt="Logo" /> 
         </div>
 
         <div className="flex center row spaceBetween">
           <Button
-            color={"primary-bg"}
-            textColor={"white-text"}
+            color={"dark-bg"}
+            textColor={"medium-text"}
             text={"Logout"}
             onClick={() => {
               localStorage.removeItem("access_token");
               navigation("/");
             }}
           />
-          <div className="flex center circular primary-bg white-text userIcon">
-            {username[0]}
-          </div>
-          <p className="black-text bold username">{username}</p>
         </div>
       </div>
-    )
   );
 };
 

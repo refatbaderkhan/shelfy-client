@@ -1,6 +1,7 @@
-.landingTabs {
+.profileTabs {
   border-bottom: 1px solid rgb(209, 209, 209);
-  height: 100px;
+  height: 70px;
   align-items: center;
   padding-left: 20px;
+  background-color: #A28089
 }

@@ -18,23 +18,26 @@ const ProfileTabs = ({ onTabChanged }) => {
   };
 
   return (
-    <div className="flex row fullWidth landingTabs">
+    <div className="flex row center fullWidth profileTabs">
       <TabButton
         name={"My Books"}
         selected={selectedTab === "My Books"}
         value={"My Books"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Following"}
         selected={selectedTab === "Following"}
         value={"Following"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Add Book"}
         selected={selectedTab === "Add Book"}
         value={"Add Book"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
     </div>

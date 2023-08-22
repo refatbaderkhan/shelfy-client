@@ -31,10 +31,12 @@ const FeedTab = () => {
     fetchFeedBooks();
   }, []);
 
+  console.log('men el feed', feedBooks)
+
 
   return (
-    <div className="flex column page">
-      <div className="flex wrap">
+    <div>
+      <div className="flex spaceBetween wrap pagecontainer">
         {feedBooks.length > 0 ? (
           feedBooks.map((book) => (
             <BookCard key={book._id} book={book} />

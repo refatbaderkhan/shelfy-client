@@ -1,6 +1,6 @@
 .landingTabs {
-  border-bottom: 1px solid rgb(209, 209, 209);
   height: 100px;
   align-items: center;
-  padding-left: 20px;
+  background-color: #FFA8b6;
+  border: 1px solid #A28089;
 }

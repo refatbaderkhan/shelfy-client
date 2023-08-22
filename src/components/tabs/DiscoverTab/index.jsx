@@ -55,10 +55,10 @@ const DiscoverTab = () => {
 
 
   return (
-    <div className="flex column page">
+    <div className="flex column page ">
           <DiscoverTabs onTabChanged={(value) => setSelectedDiscoverTab(value)} />
           {selectedDiscoverTab === "Books" && (
-            <div className="flex wrap">
+            <div className="flex spaceBetween wrap pagecontainer">
               {allBooks.map((book) => {
                 return <BookCard book={book} />;
               })}

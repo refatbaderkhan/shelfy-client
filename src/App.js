@@ -12,7 +12,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar username={"Taha"} />
         <Routes>
           <Route path="/" element={<Authentication />} />
           <Route path="/landing" element={<Landing />} />

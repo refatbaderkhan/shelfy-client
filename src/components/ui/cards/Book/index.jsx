@@ -1,21 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
+import cover from "../../../../assets/cover3.jpg";
+import Button from "../../../base/Button";
+
 
 const BookCard = ({ book }) => {
+  const [bookDetails, setBookDetails] = useState(false)
+
+
+
   return (
-    <div class="flex column placeCard">
-      <div class="rounded imagePlace">
-        <img src={book.picture_url} alt="Place" />
+    <div>
+    <div key={book._id} class="flex column placeCard rounded medium-bg">
+      <div class="imagePlace">
+        <div class='rounded'>
+        <img src={cover} alt="cover" />
+        </div>
       </div>
       <div class="placeDetails">
-        <p class="strong">
-          {book.title}, {book.author}
+        <p class="bold dark-text">
+          {book.title}
+          <br></br>
+          <br></br>
+          {book.author}
         </p>
         <p class="secondary">{book.review}</p>
         <p class="underline">
-          <span class="bold"> {book.createdAt} $ </span> Total
+          <div>
+            <Button
+              color={"dark-bg"}
+              textColor={"medium-text"}
+              text={"Book Details"}
+              onClick={()=> setBookDetails(book._id)}
+            />
+          </div>
         </p>
       </div>
+    </div>
+    {bookDetails && (
+      <div className="modal">
+        <div className="modal-content">
+        <Button
+          color={"dark-bg"}
+          textColor={"medium-text"}
+          text={"Close Book Details"}
+          onClick={()=> setBookDetails(false)}
+        />
+        </div>
+      </div>
+    )}
     </div>
   );
 };

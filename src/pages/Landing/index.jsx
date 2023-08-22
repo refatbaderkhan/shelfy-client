@@ -4,6 +4,7 @@ import DiscoverTab from "../../components/tabs/DiscoverTab";
 import ProfileTab from "../../components/tabs/ProfileTab";
 import SearchTab from "../../components/tabs/SearchTab";
 import FeedTab from "../../components/tabs/FeedTab";
+import NavBar from "../../components/ui/structure/NavBar";
 
 
 
@@ -12,6 +13,8 @@ const Landing = () => {
   const [selectedTab, setSelectedTab] = useState("Feed");
 
   return (
+    <div>
+    <NavBar/>
     <div className="flex column page">
       <LandingTabs onTabChanged={(value) => setSelectedTab(value)} />
       {selectedTab === "Discover" && (
@@ -34,6 +37,7 @@ const Landing = () => {
           <FeedTab />
         </div>
       )}
+    </div>
     </div>
   );
 };

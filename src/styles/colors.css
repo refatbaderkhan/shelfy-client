@@ -37,3 +37,19 @@
 .light-text {
   color: #ffafbd;
 }
+
+.medium-bg {
+  background-color: #FFA8b6;
+}
+
+.medium-text {
+  color: #FFA8b6;
+}
+
+.dark-bg {
+  background-color: #A28089;
+}
+
+.dark-text {
+  color: #A28089;
+}

@@ -63,14 +63,14 @@ const ProfileTab = () => {
     <div className="flex column page">
           <ProfileTabs onTabChanged={(value) => setSelectedProfileTab(value)} />
           {selectedProfileTab === "My Books" && (
-            <div className="flex wrap">
+            <div className="flex spaceBetween wrap pagecontainer">
               {MyBooks.map((book) => {
                 return <BookCard book={book} />;
               })}
             </div>
           )}
           {selectedProfileTab === "Following" && (
-            <div className="flex wrap">
+            <div className="flex spaceBetween wrap pagecontainer">
               {followings.map((user) => {
                 return <UserCard user={user} />;
               })}

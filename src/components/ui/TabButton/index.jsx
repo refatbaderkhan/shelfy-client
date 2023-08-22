@@ -1,20 +1,20 @@
 import React from "react";
 import "./style.css";
 
-const TabButton = ({ name, value, selected, icon, onSelected }) => {
+const TabButton = ({ name, value, selected, icon, onSelected, style }) => {
   const clickHandler = () => {
     onSelected(value);
   };
 
   return (
     <div
-      className="flex column roundedMedium pointer tabButton"
+      className={`flex column roundedMedium pointer tabButton${style}`}
       onClick={() => clickHandler()}
     >
       {icon}
       <p>{name}</p>
 
-      {selected && <div className="selectedMark"></div>}
+      {selected && <div className={`selectedMark${style}`}></div>}
     </div>
   );
 };

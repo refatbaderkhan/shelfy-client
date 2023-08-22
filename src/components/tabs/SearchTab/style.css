@@ -1,7 +1,8 @@
-.searchTabs {
+.searchbar {
   border-bottom: 1px solid rgb(209, 209, 209);
-  height: 70px;
+  height: 80px;
   align-items: center;
   padding-left: 20px;
+  padding:7px ;
   background-color: #A28089
 }

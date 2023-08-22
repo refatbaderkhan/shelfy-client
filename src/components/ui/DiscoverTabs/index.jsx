@@ -18,17 +18,19 @@ const DiscoverTabs = ({ onTabChanged }) => {
   };
 
   return (
-    <div className="flex row fullWidth landingTabs">
+    <div className="flex row fullWidth center discoverTabs">
       <TabButton
         name={"Books"}
         selected={selectedTab === "Books"}
         value={"Books"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"People to Follow"}
         selected={selectedTab === "People to Follow"}
         value={"People to Follow"}
+        style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
     </div>

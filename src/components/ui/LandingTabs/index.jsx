@@ -18,29 +18,33 @@ const LandingTabs = ({ onTabChanged }) => {
   };
 
   return (
-    <div className="flex row fullWidth landingTabs">
+    <div className="flex row center fullWidth landingTabs">
       <TabButton
         name={"Feed"}
         selected={selectedTab === "Feed"}
         value={"Feed"}
+        style={"Primary"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Discover"}
         selected={selectedTab === "Discover"}
         value={"Discover"}
+        style={"Primary"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Search"}
         selected={selectedTab === "Search"}
         value={"Search"}
+        style={"Primary"}
         onSelected={(value) => selectHandler(value)}
       />
       <TabButton
         name={"Profile"}
         selected={selectedTab === "Profile"}
         value={"Profile"}
+        style={"Primary"}
         onSelected={(value) => selectHandler(value)}
       />
     </div>

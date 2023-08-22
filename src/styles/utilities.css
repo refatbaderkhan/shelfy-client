@@ -87,3 +87,13 @@
 .pointer {
   cursor: pointer;
 }
+
+.pagecontainer {
+  width: 95%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.margin-top {
+  margin-top: 15px;
+}

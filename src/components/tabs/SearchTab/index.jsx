@@ -5,6 +5,8 @@ import { requestMethods } from "../../../core/enums/requestMethods";
 import SearchTabs from "../../ui/SearchTabs";
 import Button from "../../base/Button";
 import Input from "../../base/Input";
+import "./style.css";
+
 
 
 
@@ -47,23 +49,24 @@ const SearchTab = () => {
 
   return (
     <div className="flex column page">
-          <div>
+          <SearchTabs onTabChanged={(value) => setSelectedSearchTab(value)} />
+          <div className="searchbar center flex">
           <Input
-            label={"Seach"}
             placeholder={"Search for something here..."}
             onChange={(Search) => setSearch(Search)}
           />
+          <div className="dark-text"> _______ </div>
           <Button
-            color={"primary-bg"}
-            textColor={"white-text"}
+            color={"medium-bg"}
+            textColor={"dark-text"}
             text={"Search"}
             onClick={() => searchHandler()}
           />
           </div>
-          <SearchTabs onTabChanged={(value) => setSelectedSearchTab(value)} />
+          <br></br>
           {searchResult !== null && (
             searchResult.length > 0 ? (
-              <div className="flex wrap">
+              <div className="flex spaceBetween wrap pagecontainer">
                 {searchResult.map((book) => (
                   <BookCard key={book._id} book={book} />
                 ))}
