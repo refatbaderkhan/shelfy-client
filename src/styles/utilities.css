@@ -72,6 +72,14 @@
   height: 30px;
 }
 
+.spacer-25 {
+  height: 25px;
+}
+
+.spacer-20 {
+  height: 20px;
+}
+
 .spacer-15 {
   height: 15px;
 }
@@ -96,4 +104,12 @@
 
 .margin-top {
   margin-top: 15px;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.thinborder {
+  border: 1px solid black;
 }

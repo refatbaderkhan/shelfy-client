@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import "./style.css";
 import TabButton from "../TabButton";
-import {
-  AiFillAlert,
-  AiFillAliwangwang,
-  AiFillAndroid,
-  AiFillApi,
-  AiFillApple,
-} from "react-icons/ai";
 
-const SearchTabs
- = ({ onTabChanged }) => {
+const SearchTabs = ({ onTabChanged }) => {
+  
   const [selectedTab, setSelectedTab] = useState("Title");
 
   const selectHandler = (value) => {

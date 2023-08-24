@@ -4,8 +4,8 @@ import Input from "../../../base/Input";
 import Button from "../../../base/Button";
 import { sendRequest } from "../../../../core/config/request";
 import { requestMethods } from "../../../../core/enums/requestMethods";
-import axios from "axios";
 import { localStorageAction } from "../../../../core/config/localstorage";
+import "./style.css";
 
 const LoginForm = ({ onToggle }) => {
   const navigation = useNavigate();
@@ -35,8 +35,10 @@ const LoginForm = ({ onToggle }) => {
 
 
   return (
-    <div className="flex column light-bg spaceBetween rounded authenticationBox">
-      <h1>Login !</h1>
+    <div className="form-container">
+      <div className="log-in">
+      <div className="spacer-30"></div>
+      <h1>Login</h1>
       <div className="spacer-30"></div>
       <Input
         label={"Email"}
@@ -48,7 +50,7 @@ const LoginForm = ({ onToggle }) => {
           })
         }
       />
-      <div className="spacer-15"></div>
+      <div className="spacer-20"></div>
       <Input
         label={"Password"}
         placeholder={"Type your password here..."}
@@ -61,7 +63,7 @@ const LoginForm = ({ onToggle }) => {
         }
       />
       {error && <p>{error}</p>}
-      <div className="spacer-30"></div>
+      <div className="spacer-25"></div>
       <Button
         color={"primary-bg"}
         textColor={"white-text"}
@@ -69,12 +71,17 @@ const LoginForm = ({ onToggle }) => {
         onClick={() => loginHandler()}
       />
       <div className="spacer-10"></div>
+      <div className="spacer-15"></div>
+
       <p className="black-text">
         Don't have an account?{" "}
         <span className="pointer primary-text" onClick={() => onToggle()}>
           Register
         </span>
       </p>
+      <div className="spacer-30"></div>
+
+      </div>
     </div>
   );
 };

@@ -7,7 +7,6 @@ import FeedTab from "../../components/tabs/FeedTab";
 import NavBar from "../../components/ui/structure/NavBar";
 
 
-
 const Landing = () => {
 
   const [selectedTab, setSelectedTab] = useState("Feed");
@@ -17,6 +16,7 @@ const Landing = () => {
     <NavBar/>
     <div className="flex column page">
       <LandingTabs onTabChanged={(value) => setSelectedTab(value)} />
+      <div>
       {selectedTab === "Discover" && (
         <div>
           <DiscoverTab />
@@ -37,6 +37,7 @@ const Landing = () => {
           <FeedTab />
         </div>
       )}
+      </div>
     </div>
     </div>
   );

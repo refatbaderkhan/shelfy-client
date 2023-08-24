@@ -1,54 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import cover from "../../../../assets/cover3.jpg";
+import cover from "../../../../assets/cover2.jpg";
 import Button from "../../../base/Button";
+import { sendRequest } from "../../../../core/config/request";
+import { requestMethods } from "../../../../core/enums/requestMethods";
+import Details from "../../Details";
 
 
 const BookCard = ({ book }) => {
-  const [bookDetails, setBookDetails] = useState(false)
+  const [details, setBookDetails] = useState(false)
 
+  const bookRoute = 'books/'
+
+  const detailsHandler = async () => {
+    try {
+      const response = await sendRequest({
+        method: requestMethods.GET,
+        route: bookRoute + book._id
+      });
+      setBookDetails(response);  
+  
+    } catch (error) {
+      console.log(error.response);
+    }
+    };
+  
+  useEffect(() => {
+  }, [details]);
 
 
   return (
     <div>
-    <div key={book._id} class="flex column placeCard rounded medium-bg">
-      <div class="imagePlace">
-        <div class='rounded'>
-        <img src={cover} alt="cover" />
+      <div key={book._id} className="card-vertical">
+        <div>
+          <img className="img-portada" src={cover} alt="cover" />
         </div>
-      </div>
-      <div class="placeDetails">
-        <p class="bold dark-text">
-          {book.title}
-          <br></br>
-          <br></br>
-          {book.author}
-        </p>
-        <p class="secondary">{book.review}</p>
-        <p class="underline">
-          <div>
-            <Button
-              color={"dark-bg"}
-              textColor={"medium-text"}
-              text={"Book Details"}
-              onClick={()=> setBookDetails(book._id)}
-            />
+        <div className="card-vertical-text">
+          <div className="title">
+            <div>
+              <p>Title:</p>
+              <h1>{book.title}</h1>
+              <div class="horizontal-line"></div>
+              <p>Author:</p>
+              <h1>{book.author}</h1>
+              <div class="horizontal-line"></div>
+            </div>
+            <div className="button">
+              <Button
+                style={"thinborder"}
+                color={"dark-bg"}
+                textColor={"medium-text"}
+                text={"Details"}
+                onClick={() => detailsHandler()}
+              />
+            </div>
           </div>
-        </p>
-      </div>
-    </div>
-    {bookDetails && (
-      <div className="modal">
-        <div className="modal-content">
-        <Button
-          color={"dark-bg"}
-          textColor={"medium-text"}
-          text={"Close Book Details"}
-          onClick={()=> setBookDetails(false)}
-        />
         </div>
       </div>
-    )}
+      {details && <Details details={details} setBookDetails={setBookDetails} />}
     </div>
   );
 };

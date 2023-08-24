@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import BookCard from "../../../components/ui/cards/Book";
-import UserCard from "../../../components/ui/cards/User";
+import FeedCard from "../../../components/ui/cards/Feed";
+import "./style.css";
 import { sendRequest } from "../../../core/config/request";
 import { requestMethods } from "../../../core/enums/requestMethods";
 
@@ -16,7 +16,7 @@ const FeedTab = () => {
         method: requestMethods.GET,
       });
 
-      if (response.message == "No Start following users to see their books.") {
+      if (response.message == "No Books to show at the moment. Start following users to see their books.") {
         setFeedBooks([]);
       } else {
         setFeedBooks(response);
@@ -31,15 +31,13 @@ const FeedTab = () => {
     fetchFeedBooks();
   }, []);
 
-  console.log('men el feed', feedBooks)
-
 
   return (
     <div>
-      <div className="flex spaceBetween wrap pagecontainer">
+      <div className="flex spaceBetween wrap pagecontainer center-cards">
         {feedBooks.length > 0 ? (
           feedBooks.map((book) => (
-            <BookCard key={book._id} book={book} />
+            <FeedCard key={book._id} book={book} />
           ))
         ) : (
           <div>

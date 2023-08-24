@@ -5,9 +5,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Authentication from "./pages/Authentication";
 import Landing from "./pages/Landing";
 
-import NavBar from "./components/ui/structure/NavBar";
-import { useEffect, useState } from "react";
-
 function App() {
   return (
     <div className="App">

@@ -7,7 +7,19 @@
 }
 
 .baseInput > input {
+  width:400px;
   height: 30px;
-  font-size: 16px;
-  padding: 5px 10px;
+  font-size: px;
+  padding: .3em 2em;
+  border: none;
+  border-radius: 0px;
+  --c: #A28089;
+  
+  box-shadow: 0 0 0 .1em inset #A28089; 
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+
+  transition: background-size .4s, background-position 0s .4s;
+  outline-color: #A28089;
 }
+
+

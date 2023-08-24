@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const Button = ({ text, color, textColor, onClick, enabled = true }) => {
+const Button = ({ text, color, textColor, onClick, style, enabled = true }) => {
   const clickHandler = () => {
     if (enabled) {
       onClick();
@@ -10,7 +10,7 @@ const Button = ({ text, color, textColor, onClick, enabled = true }) => {
 
   return (
     <button
-      className={`roundedMedium baseButton pointer ${color} ${textColor}`}
+      className={` baseButton pointer ${color} ${textColor} ${style}`}
       onClick={() => clickHandler()}
     >
       {text}

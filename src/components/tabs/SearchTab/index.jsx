@@ -8,8 +8,6 @@ import Input from "../../base/Input";
 import "./style.css";
 
 
-
-
 const SearchTab = () => {
 
   const [selectedSearchTab, setSelectedSearchTab] = useState("Title");;
@@ -66,10 +64,14 @@ const SearchTab = () => {
           <br></br>
           {searchResult !== null && (
             searchResult.length > 0 ? (
-              <div className="flex spaceBetween wrap pagecontainer">
-                {searchResult.map((book) => (
+              <div className="flex spaceBetween wrap pagecontainer ">
+                {searchResult.map((book) => {
+                  return(
+                    <div className="book-card-wrapper">
                   <BookCard key={book._id} book={book} />
-                ))}
+                  </div>
+                  )
+                  })}
               </div>
             ) : (
             searchResult.length === 0 && (

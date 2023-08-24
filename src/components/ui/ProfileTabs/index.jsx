@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import "./style.css";
 import TabButton from "../TabButton";
-import {
-  AiFillAlert,
-  AiFillAliwangwang,
-  AiFillAndroid,
-  AiFillApi,
-  AiFillApple,
-} from "react-icons/ai";
 
 const ProfileTabs = ({ onTabChanged }) => {
+  
   const [selectedTab, setSelectedTab] = useState("My Books");
 
   const selectHandler = (value) => {

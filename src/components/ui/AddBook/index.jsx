@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import "./style.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
 import { sendRequest } from "../../../core/config/request";
 import { requestMethods } from "../../../core/enums/requestMethods";
-import { localStorageAction } from "../../../core/config/localstorage";
 
 const AddBook = ({ onToggle }) => {
-  const navigation = useNavigate();
 
   const [addedBook, setAddedBook] = useState({
     title: "",
@@ -28,23 +26,23 @@ const AddBook = ({ onToggle }) => {
         body: addedBook,
       });
 
-      console.log(response.message)
       setCreated(response.message)
       setError(null)
 
     } catch (error) {
-      console.log(error.response.data);
       setError(error.response.data)
       setCreated(null)
     }
   };
 
   return (
-    <div className="flex column spaceBetween light-bg rounded authenticationBox">
-      <h1>Add a New Book:</h1>
+  <div className="form-container">
+    <div className="add-book ">
+    <div className="spacer-30"></div>
+      <h2>Share your Latest Read with us</h2>
       <div className="spacer-30"></div>
       <Input
-        label={'title'}
+        label={'Title'}
         placeholder={"Enter Book Title..."}
         onChange={(title)=>
           setAddedBook({
@@ -53,9 +51,9 @@ const AddBook = ({ onToggle }) => {
           })
         }
       />
-      <div className="spacer-15"></div>
+      <div className="spacer-20"></div>
       <Input
-        label={'author'}
+        label={'Author'}
         placeholder={"Enter your First Name..."}
         onChange={(author)=>
           setAddedBook({
@@ -64,9 +62,9 @@ const AddBook = ({ onToggle }) => {
           })
         }
       />
-      <div className="spacer-15"></div>
+      <div className="spacer-20"></div>
       <Input
-        label={'review'}
+        label={'Review'}
         placeholder={"Enter your Last Name..."}
         onChange={(review)=>
           setAddedBook({
@@ -75,9 +73,9 @@ const AddBook = ({ onToggle }) => {
           })
         }
       />
-      <div className="spacer-15"></div>
+      <div className="spacer-20"></div>
       <Input
-        label={'genres'}
+        label={'Genres'}
         placeholder={"Enter your genres..."}
         onChange={(genres)=>
           setAddedBook({
@@ -86,9 +84,9 @@ const AddBook = ({ onToggle }) => {
           })
         }
       />
-      <div className="spacer-15"></div>
+      <div className="spacer-20"></div>
       <Input
-        label={'picture_url'}
+        label={'Upload a cover photo'}
         placeholder={"Enter your picture_url..."}
         onChange={(picture_url)=>
           setAddedBook({
@@ -97,18 +95,20 @@ const AddBook = ({ onToggle }) => {
           })
         }
       />
-      <div className="spacer-15"></div>
+      <div className="spacer-25"></div>
       {error && <p>{error}</p>}
       {created &&<p>{created}</p>}
-      <div className="spacer-30"></div>
+      <div className="spacer-10"></div>
       <Button
         color={"primary-bg"}
         textColor={"white-text"}
         text={"Submit"}
         onClick={() => addHandler()}
       />
-      <div className="spacer-10"></div>
+      <div className="spacer-30"></div>
     </div>
+  </div>
+    
   );
 };
 

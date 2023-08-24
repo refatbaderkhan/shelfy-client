@@ -1,138 +1,146 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Input from "../../../base/Input";
 import Button from "../../../base/Button";
-import { sendRequest } from "../../../../core/config/request";
+import axios from "axios"; // Import axios library
 import { requestMethods } from "../../../../core/enums/requestMethods";
-import { localStorageAction } from "../../../../core/config/localstorage";
+import "./style.css";
 
 const RegisterForm = ({ onToggle }) => {
-  const navigation = useNavigate();
-
-  const [registeration, setregisteration] = useState({
+  const [registeration, setRegisteration] = useState({
     username: "",
     first_name: "",
     last_name: "",
     email: "",
-    profile_picture: "",
     password: "",
   });
+  const [profilePicture, setProfilePicture] = useState(null);
 
   const [error, setError] = useState(null);
-  const [created,setCreated] = useState(null);;
+  const [created, setCreated] = useState(null);
 
-    const registerHandler = async () => {
+  const registerHandler = async () => {
+    const formDataObject = {
+      username: registeration.username,
+      first_name: registeration.first_name,
+      last_name: registeration.last_name,
+      email: registeration.email,
+      password: registeration.password,
+      profile_picture: profilePicture,
+    };
+
+    const formData = new FormData();
+
+    Object.keys(formDataObject).forEach((key) => {
+      formData.append(key, formDataObject[key]);
+    });
+
     try {
-      const response = await sendRequest({
-        method: requestMethods.POST,
-        route: "/register",
-        body: registeration,
+      const response = await axios.post("/register", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Set proper content type for form data
+        },
       });
 
-      console.log(response.message)
-      setCreated(response.message)
-      setError(null)
-
+      setCreated(response.data.message);
+      setError(null);
     } catch (error) {
       console.log(error.response.data);
-      setError(error.response.data)
-      setCreated(null)
+      setError(error.response.data);
+      setCreated(null);
     }
   };
 
   return (
-    <div className="flex column spaceBetween light-bg rounded authenticationBox">
-      <h1>Register !</h1>
-      <div className="spacer-30"></div>
-      <Input
-        label={'username'}
-        placeholder={"Enter your username..."}
-        onChange={(username)=>
-          setregisteration({
-            ...registeration,
-            username,
-          })
-        }
-      />
-      <div className="spacer-15"></div>
-      <Input
-        label={'first_name'}
-        placeholder={"Enter your First Name..."}
-        onChange={(first_name)=>
-          setregisteration({
-            ...registeration,
-            first_name,
-          })
-        }
-      />
-      <div className="spacer-15"></div>
-      <Input
-        label={'last_name'}
-        placeholder={"Enter your Last Name..."}
-        onChange={(last_name)=>
-          setregisteration({
-            ...registeration,
-            last_name,
-          })
-        }
-      />
-      <div className="spacer-15"></div>
-      <Input
-        label={'email'}
-        placeholder={"Enter your Email..."}
-        onChange={(email)=>
-          setregisteration({
-            ...registeration,
-            email,
-          })
-        }
-      />
-      <div className="spacer-15"></div>
-      <Input
-        label={'password'}
-        placeholder={"Enter your Password..."}
-        type="password"
-        onChange={(password)=>
-          setregisteration({
-            ...registeration,
-            password,
-          })
-        }
-      />
-      <div className="spacer-15"></div>
-      <Input
-        label={'profile_picture'}
-        placeholder={"Upload your Profile Picture..."}
-        onChange={(profile_picture)=>
-          setregisteration({
-            ...registeration,
-            profile_picture,
-          })
-        }
-      />
-      {error && <p>{error}</p>}
-      {created &&
-      <p>
-        {created}
-        <br></br>
-        <span className="pointer primary-text" onClick={() => onToggle()}>
-        Click here to login.
-        </span>
-      </p>}
-      <div className="spacer-30"></div>
-      <Button
-        color={"primary-bg"}
-        textColor={"white-text"}
-        text={"Signup"}
-        onClick={() => registerHandler()}
-      />
-      <div className="spacer-10"></div>
-      <p className="black-text">
-        Already have an account?{" "}
-        <span className="pointer primary-text" onClick={() => onToggle()}>
-          Login
-        </span>
-      </p>
+    <div className="form-container">
+      <div className="register">
+        <form encType="multipart/form-data"> {/* Set the enctype attribute here */}
+          <div className="spacer-15"></div>
+          <h1>Register</h1>
+          <div className="space-15"></div>
+          <input
+            type="text"
+            placeholder="Enter your username..."
+            onChange={(e) =>
+              setRegisteration({
+                ...registeration,
+                username: e.target.value,
+              })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Enter your First Name..."
+            onChange={(e) =>
+              setRegisteration({
+                ...registeration,
+                first_name: e.target.value,
+              })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Enter your Last Name..."
+            onChange={(e) =>
+              setRegisteration({
+                ...registeration,
+                last_name: e.target.value,
+              })
+            }
+          />
+          <input
+            type="email"
+            placeholder="Enter your Email..."
+            onChange={(e) =>
+              setRegisteration({
+                ...registeration,
+                email: e.target.value,
+              })
+            }
+          />
+          <input
+            type="password"
+            placeholder="Enter your Password..."
+            onChange={(e) =>
+              setRegisteration({
+                ...registeration,
+                password: e.target.value,
+              })
+            }
+          />
+          <input
+            type="file"
+            onChange={(e) => {
+              if (e.target && e.target.files && e.target.files[0]) {
+                setProfilePicture(e.target.files[0]);
+              }
+            }}
+          />
+          {error && <p>{error}</p>}
+          {created && (
+            <p>
+              {created}
+              <br />
+              <span className="pointer primary-text" onClick={() => onToggle()}>
+                Click here to login.
+              </span>
+            </p>
+          )}
+          <div className="spacer-25"></div>
+          <Button
+            color={"primary-bg"}
+            textColor={"white-text"}
+            text={"Submit"}
+            onClick={() => registerHandler()}
+          />
+          <div className="spacer-10"></div>
+          <p className="black-text">
+            Already have an account?{" "}
+            <span className="pointer primary-text" onClick={() => onToggle()}>
+              Login
+            </span>
+          </p>
+          <div className="spacer-15"></div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import "./style.css";
 import TabButton from "../TabButton";
-import {
-  AiFillAlert,
-  AiFillAliwangwang,
-  AiFillAndroid,
-  AiFillApi,
-  AiFillApple,
-} from "react-icons/ai";
+import {useNavigate } from "react-router-dom";
 
 const LandingTabs = ({ onTabChanged }) => {
+  const navigation = useNavigate();
+
   const [selectedTab, setSelectedTab] = useState("Feed");
 
   const selectHandler = (value) => {
@@ -46,6 +42,16 @@ const LandingTabs = ({ onTabChanged }) => {
         value={"Profile"}
         style={"Primary"}
         onSelected={(value) => selectHandler(value)}
+      />
+      <TabButton
+        name={"Logout"}
+        selected={selectedTab === "Logout"}
+        value={"Logout"}
+        style={"Primary"}
+        onSelected={() => {
+          localStorage.removeItem("access_token");
+          navigation("/");
+        }}
       />
     </div>
   );
