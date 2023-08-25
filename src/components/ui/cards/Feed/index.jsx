@@ -33,7 +33,16 @@ const FeedCard = ({ book }) => {
       route: bookRoute + book._id
     });
 
-    setBookDetails(response);
+    if (response) {
+      const bookWithPicture = {
+        ...response,
+        book_picture_url: response.picture_url
+          ? `http://127.0.0.1:8000/uploads/${response.picture_url}`
+          : 'theres no cover picture', 
+      };
+      setBookDetails(bookWithPicture);
+    }    
+
 
   } catch (error) {
     console.log(error.response);
@@ -42,17 +51,19 @@ const FeedCard = ({ book }) => {
 
   useEffect(() => {
   }, [details]);
+console.log(book.user_id.profile_picture)
+console.log(book.picture_url)
 
   return (
     <div>
       <div  className="card-container">
       <div key={book._id} className="card">
         <div>
-        <img src={profile}  alt="Profile" className="avatar-image"/>
+        <img src={book.user_id.profile_picture}  alt="Profile" className="avatar-image"/>
         </div>
         <div className="card-text">
           <div className="portada">
-            <img  className="img-portada" src={cover} alt="cover" />
+            <img  className="img-portada" src={book.picture_url} alt="cover" />
           </div>
           <div className="title-total">
             <div className="user">{book.user_id.username} added a new book

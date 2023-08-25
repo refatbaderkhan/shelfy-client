@@ -18,7 +18,14 @@ const BookCard = ({ book }) => {
         method: requestMethods.GET,
         route: bookRoute + book._id
       });
-      setBookDetails(response);  
+    const responseWithPicture = response.map(book => ({
+      ...book,
+      book_picture_url: book.picture_url
+        ? `http://127.0.0.1:8000/uploads/${book.picture_url}`
+        : 'theres no cover picture', 
+    }));
+  
+    setBookDetails(responseWithPicture);
   
     } catch (error) {
       console.log(error.response);
@@ -28,7 +35,6 @@ const BookCard = ({ book }) => {
   useEffect(() => {
   }, [details]);
 
-  console.log(book.book_picture_url)
   return (
     <div>
       <div key={book._id} className="card-vertical">

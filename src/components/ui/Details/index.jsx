@@ -45,7 +45,7 @@ const likeHandler = async () => {
       <div className="modal-content">
         <div key={details._id} className="card-modal">
           <div>
-            <img className="img-modal-portada" src={cover} alt="cover" />
+            <img className="img-modal-portada" src={details.book_picture_url} alt="cover" />
           </div>
           <div className="card-modal-text">
             <div className="title-modal">

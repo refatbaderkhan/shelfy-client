@@ -16,10 +16,24 @@ const FeedTab = () => {
         method: requestMethods.GET,
       });
 
-      if (response.message == "No Books to show at the moment. Start following users to see their books.") {
+      if (response.message === "No Books to show at the moment. Start following users to see their books.") {
         setFeedBooks([]);
       } else {
-        setFeedBooks(response);
+        const feedBooksWithUrls = response.map(book => ({
+          ...book,
+          picture_url: book.picture_url
+            ? `http://127.0.0.1:8000/uploads/${book.picture_url}`
+            : 'no picture available', // You can change this message
+          user_id: {
+            ...book.user_id,
+            profile_picture: book.user_id.profile_picture
+              ? `http://127.0.0.1:8000/uploads/${book.user_id.profile_picture}`
+              : 'theres no profile picture',
+          },
+        }));
+        
+        setFeedBooks(feedBooksWithUrls);
+        console.log('b3den',feedBooks)
       }
     } catch (error) {
       console.log(error.response.status);
