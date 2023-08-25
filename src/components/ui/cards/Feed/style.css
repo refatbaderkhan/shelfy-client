@@ -23,7 +23,7 @@
 
 
 .card-modal {
-  background: #eee7e7;
+  background: #dddddd;
   border-radius: 4px;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
   max-width: 1000px;
@@ -38,7 +38,7 @@
 }
 
 .card-modal:hover {
-  background-color: #FFA8b6;
+  background-color: #cccccc;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   border: 2px solid black;
   cursor: pointer;
@@ -119,7 +119,7 @@ h1 {
 
 /*--------------------*/
 .card {
-  background: #eee7e7;
+  background: #dddddd;
   border-radius: 4px;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
   max-width: 850px;
@@ -132,7 +132,7 @@ h1 {
 }
 
 .card:hover {
-  background-color: #FFA8b6;
+  background-color: #cccccc;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   border: 2px solid black;
   cursor: pointer;
@@ -152,9 +152,9 @@ h1 {
   width: 566px;
   padding: 2rem 3rem 0rem 2rem;
   text-align: right;
-  color: black;
+  color: #333333;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 26px;
 }
 .card .desc {
   padding: 0.5rem 1rem;
@@ -170,6 +170,7 @@ h1 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 15px;
 }
 
 
@@ -210,8 +211,11 @@ path {
   height: 125px;
   position: absolute;
   border-radius: 50%;
-  border: 6px solid white;
+  border: 4px solid #333333;
+  
   top: 75px;
   left: 220px;
 }
+
+
 

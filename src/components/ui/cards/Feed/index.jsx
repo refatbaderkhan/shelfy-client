@@ -71,7 +71,7 @@ console.log(book.picture_url)
             {formattedTime} {formattedDate}</div>
             <div className="title">
                  Author: {book.author}
-              <h1>Title: {book.title}</h1>
+              <h1> {book.title}</h1>
               <div>
               <div class="desc">
                 "{book.review}"

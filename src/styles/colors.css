@@ -39,17 +39,25 @@
 }
 
 .medium-bg {
-  background-color: #FFA8b6;
+  background-color: #dddddd;
 }
 
 .medium-text {
-  color: #FFA8b6;
+  color: #dddddd;
 }
 
 .dark-bg {
-  background-color: #A28089;
+  background-color: #cccccc;
 }
 
 .dark-text {
-  color: #A28089;
+  color: #cccccc;
+}
+
+.sp-text {
+  color: #bbbbbb;
+}
+
+.d-text {
+  color: #333333;
 }

@@ -6,7 +6,7 @@
     font-weight: bold;  
     border: none;
     border-radius: 0px;
-  --c:  #229091;
+  --c:  #333333;
   
   box-shadow: 0 0 0 .1em inset var(--c); 
   --_g: linear-gradient(var(--c) 0 0) no-repeat;
@@ -22,9 +22,10 @@
 .baseButton:hover {
   --_p: 100%;
   transition: background-position .4s, background-size 0s;
+  color: #cccccc;
 }
 .baseButton:active {
-  box-shadow: 0 0 9e9q inset #0009; 
+  box-shadow: 0 0 9e9q inset #dddddd; 
   background-color: var(--c);
-  color: #fff;
+  color: #dddddd;
 }

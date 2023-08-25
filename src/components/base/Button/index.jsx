@@ -10,7 +10,7 @@ const Button = ({ text, color, textColor, onClick, style, enabled = true }) => {
 
   return (
     <button
-      className={` baseButton pointer ${color} ${textColor} ${style}`}
+      className={` baseButton pointer ${color} d-text ${style}`}
       onClick={() => clickHandler()}
     >
       {text}

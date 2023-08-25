@@ -1,5 +1,5 @@
 .profile-card {
-  background: #eee7e7;
+  background: #dddddd ;
   border-radius: 4px;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
   max-width: 350px;
@@ -13,7 +13,7 @@
 }
 
 .profile-card:hover {
-  background-color: #FFA8b6;
+  background-color: #cccccc;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   border: 2px solid black;
   cursor: pointer;
@@ -38,7 +38,7 @@
   padding: 1rem;
   padding-bottom: 1.5rem;
   text-align: left;
-  color: black;
+  color: #333333;
   font-weight: bold;
   font-size: 25px;
   display: flex;

@@ -14,7 +14,7 @@
 }
 
 .tabButtonPrimary:hover {
-  background-color: rgb(222, 222, 222);
+  background-color: #bbbbbb;
   transition: 0.3s ease-in-out;
 }
 
@@ -33,7 +33,7 @@
   justify-content: space-around;
   margin-right: 10px;
   padding: 10px;
-  color: #FFA8b6;
+  color: #eeeeee;
   font-weight: bold;
 }
 

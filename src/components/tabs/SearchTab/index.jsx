@@ -59,7 +59,7 @@ const SearchTab = () => {
             placeholder={"Search for something here..."}
             onChange={(Search) => setSearch(Search)}
           />
-          <div className="dark-text"> _______ </div>
+          <div className="sp-text "> _______ </div>
           <Button
             color={"medium-bg"}
             textColor={"dark-text"}

@@ -69,20 +69,13 @@ const likeHandler = async () => {
                 ))}
               </div>
               <div className="horizontal-line"></div>
+              <div className="review">
               <p> Review:
                 <br></br>
                {details.review}
                </p>
+               </div>
               <div className="horizontal-line"></div>
-              <div className="button">
-                <Button
-                  style={"thinborder"}
-                  color={"dark-bg"}
-                  textColor={"medium-text"}
-                  text={"Close"}
-                  onClick={() => setBookDetails(null)}
-                />
-              </div>
               <div className="button">
                 {like ? (
                   <Button
@@ -101,6 +94,14 @@ const likeHandler = async () => {
                     onClick={() => likeHandler()}
                   />
                 )}
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <Button
+                  style={"thinborder"}
+                  color={"dark-bg"}
+                  textColor={"medium-text"}
+                  text={"Close"}
+                  onClick={() => setBookDetails(null)}
+                />
               </div>
             </div>
           </div>
