@@ -3,6 +3,8 @@ import "./style.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
 import { sendRequest } from "../../../core/config/request";
+import { sendMultipartRequest } from "../../../core/config/sendMultipartRequest";
+
 import { requestMethods } from "../../../core/enums/requestMethods";
 
 const AddBook = ({ onToggle }) => {
@@ -14,13 +16,14 @@ const AddBook = ({ onToggle }) => {
     genres: "",
     picture_url: "",
   });
+  const [coverPicture, serCoverPicture] = useState(null);
 
   const [error, setError] = useState(null);
   const [created,setCreated] = useState(null);;
 
     const addHandler = async () => {
     try {
-      const response = await sendRequest({
+      const response = await sendMultipartRequest({
         method: requestMethods.POST,
         route: "/books/create",
         body: addedBook,

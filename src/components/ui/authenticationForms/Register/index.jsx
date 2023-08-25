@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Button from "../../../base/Button";
-import axios from "axios"; // Import axios library
+import Input from "../../../base/Input";
+
 import { requestMethods } from "../../../../core/enums/requestMethods";
 import "./style.css";
+import { sendMultipartRequest } from "../../../../core/config/sendMultipartRequest";
 
 const RegisterForm = ({ onToggle }) => {
   const [registeration, setRegisteration] = useState({
@@ -15,10 +17,10 @@ const RegisterForm = ({ onToggle }) => {
   const [profilePicture, setProfilePicture] = useState(null);
 
   const [error, setError] = useState(null);
-  const [created, setCreated] = useState(null);
+  const [created, setCreated] = useState(false);
 
   const registerHandler = async () => {
-    const formDataObject = {
+    const registerationForm = {
       username: registeration.username,
       first_name: registeration.first_name,
       last_name: registeration.last_name,
@@ -27,86 +29,84 @@ const RegisterForm = ({ onToggle }) => {
       profile_picture: profilePicture,
     };
 
-    const formData = new FormData();
-
-    Object.keys(formDataObject).forEach((key) => {
-      formData.append(key, formDataObject[key]);
+    try {
+    const response = await sendMultipartRequest({
+      method: requestMethods.POST,
+      route: "/register",
+      body: registerationForm,
     });
 
-    try {
-      const response = await axios.post("/register", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Set proper content type for form data
-        },
-      });
-
-      setCreated(response.data.message);
+      setCreated(true);
       setError(null);
+
     } catch (error) {
       console.log(error.response.data);
       setError(error.response.data);
-      setCreated(null);
+      setCreated(false);
     }
   };
 
   return (
     <div className="form-container">
       <div className="register">
-        <form encType="multipart/form-data"> {/* Set the enctype attribute here */}
+        <form encType="multipart/form-data">
           <div className="spacer-15"></div>
           <h1>Register</h1>
           <div className="space-15"></div>
-          <input
-            type="text"
-            placeholder="Enter your username..."
-            onChange={(e) =>
+          <Input
+            label={"Username"}
+            placeholder={"Enter you Username..."}
+            onChange={(username) =>
               setRegisteration({
                 ...registeration,
-                username: e.target.value,
+                username,
               })
             }
           />
-          <input
-            type="text"
-            placeholder="Enter your First Name..."
-            onChange={(e) =>
+          <Input
+            label={"First Name"}
+            placeholder={"Enter you First Name..."}
+            onChange={(first_name) =>
               setRegisteration({
                 ...registeration,
-                first_name: e.target.value,
+                first_name,
               })
             }
           />
-          <input
-            type="text"
-            placeholder="Enter your Last Name..."
-            onChange={(e) =>
+          <Input
+            label={"Last Name"}
+            placeholder={"Enter you Last Name..."}
+            onChange={(last_name) =>
               setRegisteration({
                 ...registeration,
-                last_name: e.target.value,
+                last_name,
               })
             }
           />
-          <input
-            type="email"
-            placeholder="Enter your Email..."
-            onChange={(e) =>
+          <Input
+            label={"Email"}
+            placeholder={"Enter you Email..."}
+            onChange={(email) =>
               setRegisteration({
                 ...registeration,
-                email: e.target.value,
+                email,
               })
             }
           />
-          <input
-            type="password"
-            placeholder="Enter your Password..."
-            onChange={(e) =>
+          <Input
+            label={"Password"}
+            type={"password"}
+            placeholder={"Enter Password..."}
+            onChange={(password) =>
               setRegisteration({
                 ...registeration,
-                password: e.target.value,
+                password,
               })
             }
           />
+          <div className="label">Upload a profile picture</div>
           <input
+            className="upload"
             type="file"
             onChange={(e) => {
               if (e.target && e.target.files && e.target.files[0]) {
@@ -117,7 +117,7 @@ const RegisterForm = ({ onToggle }) => {
           {error && <p>{error}</p>}
           {created && (
             <p>
-              {created}
+              Account Created Successfully.
               <br />
               <span className="pointer primary-text" onClick={() => onToggle()}>
                 Click here to login.
@@ -146,3 +146,5 @@ const RegisterForm = ({ onToggle }) => {
 };
 
 export default RegisterForm;
+
+

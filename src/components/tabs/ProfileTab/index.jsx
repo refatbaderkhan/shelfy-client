@@ -66,7 +66,7 @@ const ProfileTab = () => {
       )}
       {selectedProfileTab === "Following" && (
         <div className="flex spaceBetween wrap pagecontainer">
-          {followings.length === 0 ? (
+          {followings.length == 0 ? (
             <p>You're currently not following any user.</p>
           ) : (
             followings.map((user) => (
