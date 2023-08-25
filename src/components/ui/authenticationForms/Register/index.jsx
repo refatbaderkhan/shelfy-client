@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Button from "../../../base/Button";
 import Input from "../../../base/Input";
-
 import { requestMethods } from "../../../../core/enums/requestMethods";
 import "./style.css";
 import { sendMultipartRequest } from "../../../../core/config/sendMultipartRequest";
 
-const RegisterForm = ({ onToggle }) => {
+const RegisterForm = ({ onToggleRegister }) => {
   const [registeration, setRegisteration] = useState({
     username: "",
     first_name: "",
@@ -15,9 +14,8 @@ const RegisterForm = ({ onToggle }) => {
     password: "",
   });
   const [profilePicture, setProfilePicture] = useState(null);
-
   const [error, setError] = useState(null);
-  const [created, setCreated] = useState(false);
+  const [created, setCreated] = useState(null);
 
   const registerHandler = async () => {
     const registerationForm = {
@@ -44,6 +42,16 @@ const RegisterForm = ({ onToggle }) => {
       setError(error.response.data);
       setCreated(false);
     }
+  };
+
+  const isFormValid = () => {
+    return (
+      registeration.username.trim() !== "" &&
+      registeration.first_name.trim() !== "" &&
+      registeration.last_name.trim() !== "" &&
+      registeration.email.trim() !== "" &&
+      registeration.password.trim() !== ""
+    );
   };
 
   return (
@@ -119,7 +127,7 @@ const RegisterForm = ({ onToggle }) => {
             <p>
               Account Created Successfully.
               <br />
-              <span className="pointer primary-text" onClick={() => onToggle()}>
+              <span className="pointer primary-text" onClick={onToggleRegister}>
                 Click here to login.
               </span>
             </p>
@@ -129,12 +137,18 @@ const RegisterForm = ({ onToggle }) => {
             color={"primary-bg"}
             textColor={"white-text"}
             text={"Submit"}
-            onClick={() => registerHandler()}
+            onClick={() => {
+              if (isFormValid()) {
+                registerHandler();
+              } else {
+                setError("Please fill in all the fields.");
+              }
+            }}
           />
           <div className="spacer-10"></div>
           <p className="black-text">
             Already have an account?{" "}
-            <span className="pointer primary-text" onClick={() => onToggle()}>
+            <span className="pointer primary-text" onClick={onToggleRegister }>
               Login
             </span>
           </p>

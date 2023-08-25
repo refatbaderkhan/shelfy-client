@@ -33,10 +33,9 @@ const FeedTab = () => {
         }));
         
         setFeedBooks(feedBooksWithPictures);
-        console.log('b3den',feedBooks)
       }
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.response);
     }
   };
 

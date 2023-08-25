@@ -7,7 +7,7 @@ import { requestMethods } from "../../../../core/enums/requestMethods";
 import { localStorageAction } from "../../../../core/config/localstorage";
 import "./style.css";
 
-const LoginForm = ({ onToggle }) => {
+const LoginForm = ({ onToggleLogin }) => {
   const navigation = useNavigate();
 
   const [credentials, setCredentials] = useState({
@@ -75,7 +75,7 @@ const LoginForm = ({ onToggle }) => {
 
       <p className="black-text">
         Don't have an account?{" "}
-        <span className="pointer primary-text" onClick={() => onToggle()}>
+        <span className="pointer primary-text" onClick={() => onToggleLogin()}>
           Register
         </span>
       </p>

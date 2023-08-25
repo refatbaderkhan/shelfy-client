@@ -18,16 +18,17 @@ const BookCard = ({ book }) => {
         method: requestMethods.GET,
         route: bookRoute + book._id
       });
-    const responseWithPicture = response.map(book => ({
-      ...book,
-      book_picture_url: book.picture_url
-        ? `http://127.0.0.1:8000/uploads/${book.picture_url}`
-        : 'theres no cover picture', 
-    }));
-  
-    setBookDetails(responseWithPicture);
-  
-    } catch (error) {
+
+    if (response) {
+      const bookWithPicture = {
+        ...response,
+        book_picture_url: response.picture_url
+          ? `http://127.0.0.1:8000/uploads/${response.picture_url}`
+          : 'theres no cover picture', 
+      };
+      setBookDetails(bookWithPicture);
+    }
+    }  catch (error) {
       console.log(error.response);
     }
     };

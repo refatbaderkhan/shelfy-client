@@ -9,9 +9,9 @@ const Authentication = () => {
   return (
     <div className="flex center page">
       {login ? (
-        <LoginForm onToggle={() => setLogin(false)} />
+        <LoginForm onToggleLogin={() => setLogin(false)} />
       ) : (
-        <RegisterForm onToggle={() => setLogin(true)} />
+        <RegisterForm onToggleRegister={() => setLogin(true)} />
       )}
     </div>
   );

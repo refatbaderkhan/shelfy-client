@@ -40,6 +40,8 @@ const likeHandler = async () => {
     }
     };
 
+  console.log(details)
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -57,12 +59,27 @@ const likeHandler = async () => {
                 <h1>{details.author}</h1>
                 <div className="horizontal-line"></div>
               </div>
+              <p>Genres:</p>
+              <div className="genre-list">
+                {details.genres.map((genre, index) => (
+                  <span className="genre">
+                      {index !== 0 && ", "}
+                      <span className="genre">{genre.genre_name}</span>
+                  </span>
+                ))}
+              </div>
+              <div className="horizontal-line"></div>
+              <p> Review:
+                <br></br>
+               {details.review}
+               </p>
+              <div className="horizontal-line"></div>
               <div className="button">
                 <Button
                   style={"thinborder"}
                   color={"dark-bg"}
                   textColor={"medium-text"}
-                  text={"Details"}
+                  text={"Close"}
                   onClick={() => setBookDetails(null)}
                 />
               </div>

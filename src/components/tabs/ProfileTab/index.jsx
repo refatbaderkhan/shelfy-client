@@ -36,7 +36,7 @@ const ProfileTab = () => {
       setMyBooks(responseWithPicture);
 
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.response);
     }
   };
 
@@ -58,7 +58,7 @@ const ProfileTab = () => {
       setFollowings(responseWithPicture);
       
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.response);
     }
   };
 

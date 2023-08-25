@@ -34,13 +34,6 @@ const SearchTabs = ({ onTabChanged }) => {
         style={"Alternative"}
         onSelected={(value) => selectHandler(value)}
       />
-      <TabButton
-        name={"Keyword"}
-        selected={selectedTab === "Keyword"}
-        value={"Keyword"}
-        style={"Alternative"}
-        onSelected={(value) => selectHandler(value)}
-      />
     </div>
   );
 };

@@ -37,7 +37,13 @@ const SearchTab = () => {
       if (response.message == "No matches.") {
         setSearchResult([]);
       } else {
-        setSearchResult(response);
+        const responseWithPicture = response.map(book => ({
+          ...book,
+          book_picture_url: book.picture_url
+            ? `http://127.0.0.1:8000/uploads/${book.picture_url}`
+            : 'theres no cover picture', 
+        }));
+        setSearchResult(responseWithPicture);
       }
 
     } catch (error) {

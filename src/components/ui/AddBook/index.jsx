@@ -27,6 +27,18 @@ const AddBook = ({ onToggle }) => {
   };
 
   const addHandler = async () => {
+    if (
+      !addedBook.title.trim() ||
+      !addedBook.author.trim() ||
+      !addedBook.review.trim() ||
+      addedBook.genres.length === 0 ||
+      !coverPicture
+    ) {
+      setError("Please fill in all the fields and upload a cover picture.");
+      setCreated(null);
+      return;
+    }
+
     const addedBookForm = {
       title: addedBook.title,
       author: addedBook.author,
@@ -41,10 +53,17 @@ const AddBook = ({ onToggle }) => {
         route: "/books/create",
         body: addedBookForm,
       });
-      console.log('res',response)
       setCreated(response.message)
       setError(null)
-
+      setAddedBook({
+        title: "",
+        author: "",
+        review: "",
+        genres: [],
+        picture_url: "",
+      });
+      setCoverPicture(null);
+      
     } catch (error) {
       setError(error.response.data)
       setCreated(null)
