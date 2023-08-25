@@ -11,13 +11,20 @@ const AddBook = ({ onToggle }) => {
     title: "",
     author: "",
     review: "",
-    genres: "",
+    genres: [],
     picture_url: "",
   });
   const [coverPicture, setCoverPicture] = useState(null);
-
   const [error, setError] = useState(null);
-  const [created,setCreated] = useState(null);;
+  const [created,setCreated] = useState(null);
+
+  const handleGenreInput = (inputValue) => {
+    const genresArray = inputValue.split(" ");
+    setAddedBook({
+      ...addedBook,
+      genres: genresArray,
+    });
+  };
 
   const addHandler = async () => {
     const addedBookForm = {
@@ -43,6 +50,7 @@ const AddBook = ({ onToggle }) => {
       setCreated(null)
     }
   };
+
 
   return (
   <div className="form-container">
@@ -85,13 +93,8 @@ const AddBook = ({ onToggle }) => {
       <div className="spacer-20"></div>
       <Input
         label={'Genres'}
-        placeholder={"Enter your genres..."}
-        onChange={(genres)=>
-          setAddedBook({
-            ...addedBook,
-            genres,
-          })
-        }
+        placeholder={"Enter book genres with leaving space between them..."}
+        onChange={(genres) => handleGenreInput(genres)}
       />
       <div className="spacer-20"></div>
       <div className="label">Upload a Book Cover</div>
