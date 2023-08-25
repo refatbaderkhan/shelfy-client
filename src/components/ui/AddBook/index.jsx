@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import Input from "../../base/Input";
 import Button from "../../base/Button";
-import { sendRequest } from "../../../core/config/request";
 import { sendMultipartRequest } from "../../../core/config/sendMultipartRequest";
-
 import { requestMethods } from "../../../core/enums/requestMethods";
 
 const AddBook = ({ onToggle }) => {
@@ -16,19 +14,27 @@ const AddBook = ({ onToggle }) => {
     genres: "",
     picture_url: "",
   });
-  const [coverPicture, serCoverPicture] = useState(null);
+  const [coverPicture, setCoverPicture] = useState(null);
 
   const [error, setError] = useState(null);
   const [created,setCreated] = useState(null);;
 
-    const addHandler = async () => {
+  const addHandler = async () => {
+    const addedBookForm = {
+      title: addedBook.title,
+      author: addedBook.author,
+      review: addedBook.review,
+      genres: addedBook.genres,
+      picture_url: coverPicture,
+    };
+
     try {
       const response = await sendMultipartRequest({
         method: requestMethods.POST,
         route: "/books/create",
-        body: addedBook,
+        body: addedBookForm,
       });
-
+      console.log('res',response)
       setCreated(response.message)
       setError(null)
 
@@ -88,16 +94,16 @@ const AddBook = ({ onToggle }) => {
         }
       />
       <div className="spacer-20"></div>
-      <Input
-        label={'Upload a cover photo'}
-        placeholder={"Enter your picture_url..."}
-        onChange={(picture_url)=>
-          setAddedBook({
-            ...addedBook,
-            picture_url,
-          })
-        }
-      />
+      <div className="label">Upload a Book Cover</div>
+          <input
+            className="upload"
+            type="file"
+            onChange={(e) => {
+              if (e.target && e.target.files && e.target.files[0]) {
+                setCoverPicture(e.target.files[0]);
+              }
+            }}
+          />
       <div className="spacer-25"></div>
       {error && <p>{error}</p>}
       {created &&<p>{created}</p>}

@@ -26,7 +26,14 @@ const ProfileTab = () => {
         method: requestMethods.GET,
       });
 
-      setMyBooks(response);
+      const responseWithPicture = response.map(book => ({
+        ...book,
+        book_picture_url: book.picture_url
+          ? `http://127.0.0.1:8000/uploads/${book.picture_url}`
+          : 'theres no cover picture', 
+      }));
+
+      setMyBooks(responseWithPicture);
 
     } catch (error) {
       console.log(error.response.status);
@@ -40,7 +47,15 @@ const ProfileTab = () => {
         method: requestMethods.GET,
       });
 
-      setFollowings(response);
+      const responseWithPicture = response.map(user => ({
+        ...user,
+        profile_picture_url: user.profile_picture
+          ? `http://127.0.0.1:8000/uploads/${user.profile_picture}`
+          : 'theres no profile picture', 
+      }));
+
+
+      setFollowings(responseWithPicture);
       
     } catch (error) {
       console.log(error.response.status);

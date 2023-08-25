@@ -25,7 +25,15 @@ const DiscoverTab = () => {
         method: requestMethods.GET,
       });
 
-      setAllBooks(response);
+      const responseWithPicture = response.map(book => ({
+        ...book,
+        book_picture_url: book.picture_url
+          ? `http://127.0.0.1:8000/uploads/${book.picture_url}`
+          : 'theres no cover picture', 
+      }));
+
+      setAllBooks(responseWithPicture);
+
     } catch (error) {
       console.log(error.response.status);
     }

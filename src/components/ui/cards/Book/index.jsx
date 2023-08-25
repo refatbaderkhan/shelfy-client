@@ -28,12 +28,12 @@ const BookCard = ({ book }) => {
   useEffect(() => {
   }, [details]);
 
-
+  console.log(book.book_picture_url)
   return (
     <div>
       <div key={book._id} className="card-vertical">
         <div>
-          <img className="img-portada" src={cover} alt="cover" />
+          <img className="img-portada" src={book.book_picture_url} alt="cover" />
         </div>
         <div className="card-vertical-text">
           <div className="title">
