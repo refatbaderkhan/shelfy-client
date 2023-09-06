@@ -45,11 +45,11 @@ const socialHandler = async () => {
             {user.first_name} {user.last_name}
           </h1>
           <div class="horizontal-line"></div>
-          <h1>Books:{user.books.length}</h1>
+          <h1>Books: {user.books.length}</h1>
         </div>
         <div className="button-container">
           <Button
-            style={"thinborder"}
+            style={"Alternative"}
             color={"dark-bg"}
             textColor={"medium-text"}
             text={status}

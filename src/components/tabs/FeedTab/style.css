@@ -1,5 +1,5 @@
 .center-cards {
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Center vertically within the viewport */
+  height: 100vh;
 } 

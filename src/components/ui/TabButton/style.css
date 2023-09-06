@@ -1,14 +1,13 @@
 .tabButtonPrimary {
-  height: 100px;
+  height: 60px;
   min-width: 80px;
   transition: 0.3s ease-in-out;
   align-items: center;
   justify-content: space-around;
-  margin: 10px;
-  padding: 10px;
+  margin: 3px;
+  padding: 5px;
   padding-left: 60px;
   padding-right: 60px;
-  color: #A28089;
   font-weight:bolder;
   font-size:larger;
 }
@@ -26,11 +25,13 @@
 }
 
 .tabButtonAlternative {
-  height: 60px;
+  height: 25px;
+  max-height: 30px;
   min-width: 80px;
   transition: 0.3s ease-in-out;
   align-items: center;
   justify-content: space-around;
+  margin: 3px;
   margin-right: 10px;
   padding: 10px;
   color: #eeeeee;
@@ -42,9 +43,15 @@
   transition: 0.3s ease-in-out;
 }
 
-.selectedMarkAlternative {
-  height: 1px;
-  width: 80%;
-  border-radius: 1.5px;
-  background-color: #FFA8b6;
+.tabButtonAlternative:hover {
+  background-color: rgb(222, 222, 222);
+  transition: 0.3s ease-in-out;
+}
+
+.markedPrimary {
+  background-color: #bbbbbb;
+}
+
+.markedAlternative {
+  background-color: rgb(222, 222, 222);
 }

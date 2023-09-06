@@ -8,7 +8,7 @@ const TabButton = ({ name, value, selected, icon, onSelected, style }) => {
 
   return (
     <div
-      className={`flex column roundedMedium pointer tabButton${style}`}
+      className={`flex column roundedMedium pointer tabButton${style} ${selected ? `marked${style}` : ""}`}
       onClick={() => clickHandler()}
     >
       {icon}

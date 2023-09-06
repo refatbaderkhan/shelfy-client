@@ -63,7 +63,8 @@ const SearchTab = () => {
           <Button
             color={"medium-bg"}
             textColor={"dark-text"}
-            text={"Search"}
+            style={"Alternative2"}
+            text={"Search"} 
             onClick={() => searchHandler()}
           />
           </div>

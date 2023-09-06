@@ -8,9 +8,13 @@ const Button = ({ text, color, textColor, onClick, style, enabled = true }) => {
     }
   };
 
+  const combinedClassName = `baseButton${style === "Alternative" ? "Alternative" : (style === "Alternative2" ? "Alternative2" : "")}`;
+
+  console.log('2',combinedClassName)
+
   return (
     <button
-      className={` baseButton pointer ${color} d-text ${style}`}
+      className={` ${combinedClassName} pointer ${color} d-text`}
       onClick={() => clickHandler()}
     >
       {text}
